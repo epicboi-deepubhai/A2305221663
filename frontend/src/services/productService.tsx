@@ -24,7 +24,7 @@ export const getProducts = async (
     page = 1,
     limit = 10
 ): Promise<{ products: Product[], total: number }> => {
-    const response = await axios.get(`${API_BASE_URL}/categories/${category}/products`, {
+    const response = await axios.get(`${API_BASE_URL}/companies/${company}/categories/${category}/products`, {
         params: {
             company,
             minPrice,
