@@ -28,7 +28,7 @@ const getAuthToken = async () => {
     }
 };
 
-const MAX_PRICE = 1000000000; // Use a large number instead of Infinity
+const MAX_PRICE = 1000000000;
 
 const getProductDataFromAPI = async (companyname, categoryname, minPrice = 0, maxPrice = MAX_PRICE, productid = null, authToken, top = 10) => {
     try {
@@ -41,12 +41,10 @@ const getProductDataFromAPI = async (companyname, categoryname, minPrice = 0, ma
         };
 
         if (productid) {
-            // Fetch product details by product ID
             console.log(`Fetching product details for product ID: ${productid}`);
             const response = await axios.get(`${domain}/${productid}`, config);
             return response.data;
         } else {
-            // Fetch product data based on category and price range
             console.log(`Fetching products for category: ${categoryname}, minPrice: ${minPrice}, maxPrice: ${maxPrice}, top: ${top}`);
             const response = await axios.get(domain, {
                 ...config,
@@ -61,7 +59,7 @@ const getProductDataFromAPI = async (companyname, categoryname, minPrice = 0, ma
     } catch (error) {
         console.error('Error fetching product data:', error.response ? error.response.data : error.message);
         if (error.response && error.response.status === 404) {
-            return null; // Product not found
+            return null;
         }
         throw new Error('Failed to fetch product data');
     }

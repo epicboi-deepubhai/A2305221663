@@ -12,11 +12,9 @@ const getPaginatedProductsByCategory = async (categoryName, top, page) => {
     const startIndex = (page - 1) * top;
     const endIndex = startIndex + top;
 
-    // First, get the total count of products
     const allProducts = await getProductDataFromAPI(companyName, categoryName, 0, Infinity, null, authToken, Infinity);
     const totalCount = allProducts.length;
 
-    // Then, get the paginated products
     const paginatedProducts = allProducts.slice(startIndex, endIndex);
 
     return {
